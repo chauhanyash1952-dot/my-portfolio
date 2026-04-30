@@ -1,0 +1,32 @@
+/* Custom styles that complement Tailwind */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hide default scrollbar for a cleaner look */
+body {
+    scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Hide default cursor on desktop since we have a custom one */
+@media (min-width: 768px) {
+    body, a, button, input, textarea {
+        cursor: none !important;
+    }
+}
+
+/* Custom Selection Color */
+::selection {
+    background-color: #8a2be2;
+    color: white;
+}
+
+/* Add a subtle glow to text inputs on focus */
+input:focus, textarea:focus {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}

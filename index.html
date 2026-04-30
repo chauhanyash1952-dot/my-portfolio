@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAX CHAUHAN | Graphic Designer</title>
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        primary: '#00f0ff', // Electric blue
+                        secondary: '#8a2be2', // Purple
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dark text-white overflow-x-hidden antialiased">
+    
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-6 h-6 rounded-full border-2 border-primary pointer-events-none z-50 mix-blend-difference transition-transform duration-100 ease-out hidden md:block"></div>
+    <div id="cursor-glow" class="fixed w-32 h-32 rounded-full bg-primary/20 blur-3xl pointer-events-none z-40 transition-transform duration-300 ease-out hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-8 py-6 flex justify-between items-center">
+        <div class="font-heading font-black text-2xl tracking-tighter">YAX<span class="text-primary">.</span></div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+            <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-primary transition-colors">About</a></li>
+            <li><a href="#portfolio" class="hover:text-primary transition-colors">Portfolio</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Services</a></li>
+            <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Content Sections -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-screen flex flex-col justify-center px-8 md:px-24">
+            <div class="hero-content max-w-4xl relative z-10">
+                <h2 class="text-secondary font-medium tracking-widest uppercase mb-4 opacity-0 transform translate-y-8 hero-anim">Creative Visual Storyteller</h2>
+                <h1 class="font-heading font-black text-6xl md:text-8xl leading-none mb-6 opacity-0 transform translate-y-8 hero-anim">
+                    Hi, I'm <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">YAX CHAUHAN</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-10 opacity-0 transform translate-y-8 hero-anim">
+                    Graphic Designer & Brand Identity Expert crafting immersive digital and visual experiences.
+                </p>
+                <div class="flex flex-wrap gap-6 opacity-0 transform translate-y-8 hero-anim">
+                    <a href="#portfolio" class="px-8 py-4 bg-primary text-dark font-bold rounded-full hover:bg-white transition-all transform hover:scale-105">View My Work</a>
+                    <a href="#contact" class="px-8 py-4 border border-white/20 rounded-full hover:border-primary hover:text-primary transition-all">Let's Create Together</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen py-24 px-8 md:px-24 flex items-center bg-dark/60 backdrop-blur-md relative z-10 border-t border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-7xl mx-auto">
+                <div class="about-text">
+                    <h2 class="font-heading text-4xl md:text-6xl font-bold mb-8"><span class="text-primary">/</span> About Me</h2>
+                    <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                        I am a visionary graphic designer with a passion for bringing ideas to life through bold aesthetics and meticulous details. My design philosophy revolves around minimalism with maximum impact.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        With expertise spanning brand identity, immersive digital design, and high-end packaging, I don't just create visuals—I build experiences that resonate and leave a lasting impression.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="p-6 bg-white/5 rounded-xl border border-white/10 flex-1">
+                            <h3 class="font-heading font-bold text-3xl text-primary mb-2">5+</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-wider">Years Exp.</p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-xl border border-white/10 flex-1">
+                            <h3 class="font-heading font-bold text-3xl text-secondary mb-2">100+</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-wider">Projects</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative about-image group flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-700 rounded-full"></div>
+                    <div class="relative h-96 w-full bg-white/5 border border-white/10 rounded-3xl overflow-hidden flex items-center justify-center backdrop-blur-sm">
+                       <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-primary to-secondary animate-pulse blur-xl"></div>
+                       <p class="absolute font-heading font-bold text-white/50 tracking-widest mix-blend-overlay text-4xl transform -rotate-90">YAX VISION</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="min-h-screen py-24 px-8 md:px-24 bg-dark relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold mb-16 text-center"><span class="text-primary">/</span> Featured Work</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio Item 1 -->
+                    <div class="portfolio-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer border border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                            <div class="w-full h-full bg-[url('./images/baby-elephant-cafe.jpg')] bg-cover bg-center mix-blend-luminosity opacity-60 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-primary text-sm font-medium tracking-wider mb-2">MENU DESIGN</p>
+                            <h3 class="text-3xl font-heading font-bold">Baby Elephant Café</h3>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 2 -->
+                    <div class="portfolio-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer md:translate-y-12 border border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                            <div class="w-full h-full bg-[url('./images/cream-roll.jpg')] bg-cover bg-center mix-blend-luminosity opacity-60 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-secondary text-sm font-medium tracking-wider mb-2">PACKAGING DESIGN</p>
+                            <h3 class="text-3xl font-heading font-bold">Vanilla Cream Roll</h3>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 3 -->
+                    <div class="portfolio-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer border border-white/5 lg:translate-y-24">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                            <div class="w-full h-full bg-[url('./images/masala-khari.jpg')] bg-cover bg-center mix-blend-luminosity opacity-60 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-primary text-sm font-medium tracking-wider mb-2">PACKAGING DESIGN</p>
+                            <h3 class="text-3xl font-heading font-bold">Masala Khari</h3>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 4 -->
+                    <div class="portfolio-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer border border-white/5 md:translate-y-12 lg:translate-y-0">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                            <div class="w-full h-full bg-[url('./images/jeera-khari.jpg')] bg-cover bg-center mix-blend-luminosity opacity-60 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-secondary text-sm font-medium tracking-wider mb-2">PACKAGING DESIGN</p>
+                            <h3 class="text-3xl font-heading font-bold">Jeera Khari</h3>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 5 -->
+                    <div class="portfolio-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer border border-white/5 lg:translate-y-12">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                            <div class="w-full h-full bg-[url('./images/indian-corner.jpg')] bg-cover bg-center mix-blend-luminosity opacity-60 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-primary text-sm font-medium tracking-wider mb-2">MENU DESIGN</p>
+                            <h3 class="text-3xl font-heading font-bold">Indian Corner Menu</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-32">
+                    <a href="#" class="inline-block px-10 py-4 border border-white/20 rounded-full hover:border-primary hover:text-primary transition-all hover:bg-primary/5 font-medium tracking-wide">View Full Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="min-h-screen py-24 px-8 md:px-24 bg-dark/80 backdrop-blur-md relative z-10 border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold mb-16"><span class="text-primary">/</span> My Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service 1 -->
+                    <div class="service-card p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-primary/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:scale-110 transition-transform">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-heading">Brand Identity</h3>
+                        <p class="text-gray-400 text-sm">Crafting cohesive and memorable brand experiences that tell your unique story.</p>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="service-card p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-secondary/50 transition-all duration-300 group md:translate-y-8">
+                        <div class="w-12 h-12 mb-6 text-secondary group-hover:scale-110 transition-transform">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-heading">Packaging</h3>
+                        <p class="text-gray-400 text-sm">Designing premium packaging that stands out on shelves and delights customers.</p>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="service-card p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-primary/50 transition-all duration-300 group">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:scale-110 transition-transform">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-heading">Social Media</h3>
+                        <p class="text-gray-400 text-sm">High-impact creatives tailored for digital platforms and engagement.</p>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="service-card p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-secondary/50 transition-all duration-300 group md:translate-y-8">
+                        <div class="w-12 h-12 mb-6 text-secondary group-hover:scale-110 transition-transform">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-heading">Print Design</h3>
+                        <p class="text-gray-400 text-sm">Editorial, posters, and marketing materials with perfect typography.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="min-h-screen flex items-center py-24 px-8 md:px-24 bg-dark relative z-10 border-t border-white/5">
+            <div class="w-full max-w-6xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 md:p-16 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+                    <div>
+                        <h2 class="font-heading text-4xl md:text-6xl font-black mb-6">Let's Create <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Magic Together</span></h2>
+                        <p class="text-gray-400 text-lg mb-10">Have a project in mind? Let's discuss how we can elevate your brand with stunning visuals.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4 text-gray-300">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-primary">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <span class="tracking-wide">hello@yaxchauhan.com</span>
+                            </div>
+                            <div class="flex items-center gap-4 text-gray-300">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-secondary">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <span class="tracking-wide">Available Worldwide</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full bg-dark/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full bg-dark/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div>
+                            <textarea placeholder="Tell me about your project" rows="4" class="w-full bg-dark/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="button" class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl px-6 py-4 hover:opacity-90 transition-opacity tracking-widest uppercase">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="py-8 text-center border-t border-white/5 text-gray-500 text-sm bg-dark relative z-10">
+            <p>&copy; 2026 Yax Chauhan. All Rights Reserved. Crafted with passion.</p>
+        </footer>
+    </main>
+
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    
+    <!-- GSAP via standard CDN (simpler than ES modules for browser directly) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Main Logic -->
+    <script type="module">
+import * as THREE from 'three';
+
+// --- CUSTOM CURSOR LOGIC ---
+const cursor = document.getElementById('cursor');
+const cursorGlow = document.getElementById('cursor-glow');
+
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+let glowX = 0;
+let glowY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursor() {
+    // Smooth easing for trailing cursor
+    cursorX += (mouseX - cursorX) * 0.2;
+    cursorY += (mouseY - cursorY) * 0.2;
+    
+    // Slower easing for the glow
+    glowX += (mouseX - glowX) * 0.05;
+    glowY += (mouseY - glowY) * 0.05;
+
+    if (cursor && cursorGlow) {
+        cursor.style.transform = `translate3d(${cursorX - 12}px, ${cursorY - 12}px, 0)`;
+        cursorGlow.style.transform = `translate3d(${glowX - 64}px, ${glowY - 64}px, 0)`;
+    }
+    
+    requestAnimationFrame(animateCursor);
+}
+// Start cursor animation if on desktop
+if (window.innerWidth >= 768) {
+    animateCursor();
+}
+
+// Hover states for interactive elements
+const hoverElements = document.querySelectorAll('a, button, .portfolio-card, .service-card, input, textarea');
+hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        if (cursor) {
+            cursor.style.transform = `translate3d(${cursorX - 12}px, ${cursorY - 12}px, 0) scale(1.5)`;
+            cursor.style.backgroundColor = 'rgba(0, 240, 255, 0.2)';
+            cursor.style.borderColor = 'rgba(0, 240, 255, 0.5)';
+        }
+    });
+    el.addEventListener('mouseleave', () => {
+        if (cursor) {
+            cursor.style.transform = `translate3d(${cursorX - 12}px, ${cursorY - 12}px, 0) scale(1)`;
+            cursor.style.backgroundColor = 'transparent';
+            cursor.style.borderColor = '#00f0ff';
+        }
+    });
+});
+
+// --- GSAP SCROLL ANIMATIONS ---
+gsap.registerPlugin(ScrollTrigger);
+
+// Initial Hero Entrance Animation
+gsap.to('.hero-anim', {
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: 'power3.out',
+    delay: 0.5
+});
+
+// Animate Sections on Scroll
+const sections = document.querySelectorAll('section');
+sections.forEach((sec) => {
+    if(sec.id !== 'home') {
+        gsap.fromTo(sec, 
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1, 
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: sec,
+                    start: 'top 80%', // trigger when top of section hits 80% of viewport
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse'
+                }
+            }
+        );
+    }
+});
+
+// --- THREE.JS 3D BACKGROUND / AVATAR ---
+const canvas = document.querySelector('#webgl-canvas');
+const scene = new THREE.Scene();
+scene.background = null; // Transparent background to show Tailwind dark theme
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 12; // Adjust distance
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// Create a premium abstract 3D object to act as the "Avatar" placeholder
+const group = new THREE.Group();
+scene.add(group);
+
+// 1. Outer Wireframe Icosahedron
+const outerGeo = new THREE.IcosahedronGeometry(4, 1);
+const outerMat = new THREE.MeshPhysicalMaterial({
+    color: 0x00f0ff,
+    metalness: 0.9,
+    roughness: 0.1,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.4,
+});
+const outerMesh = new THREE.Mesh(outerGeo, outerMat);
+group.add(outerMesh);
+
+// 2. Inner Solid Octahedron
+const innerGeo = new THREE.OctahedronGeometry(2.5, 0);
+const innerMat = new THREE.MeshStandardMaterial({
+    color: 0x8a2be2, // Purple
+    metalness: 0.8,
+    roughness: 0.2,
+});
+const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+group.add(innerMesh);
+
+// 3. Floating Particles Field
+const particlesGeo = new THREE.BufferGeometry();
+const particlesCount = 800;
+const posArray = new Float32Array(particlesCount * 3);
+
+for(let i = 0; i < particlesCount * 3; i++) {
+    // Spread particles across a wide area
+    posArray[i] = (Math.random() - 0.5) * 40;
+}
+
+particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const particlesMat = new THREE.PointsMaterial({
+    size: 0.05,
+    color: 0x00f0ff,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
+});
+const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+scene.add(particlesMesh);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const pointLight1 = new THREE.PointLight(0x00f0ff, 100, 100);
+pointLight1.position.set(5, 5, 5);
+scene.add(pointLight1);
+
+const pointLight2 = new THREE.PointLight(0x8a2be2, 100, 100);
+pointLight2.position.set(-5, -5, 5);
+scene.add(pointLight2);
+
+// Interactivity Variables
+let targetRotationX = 0;
+let targetRotationY = 0;
+let scrollY = window.scrollY;
+
+// Mouse tracking for 3D model
+document.addEventListener('mousemove', (e) => {
+    // Normalize mouse coordinates from -1 to 1
+    const normX = (e.clientX / window.innerWidth) * 2 - 1;
+    const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+    
+    // Set target rotation (limit the maximum rotation amount)
+    targetRotationY = normX * 0.8;
+    targetRotationX = -normY * 0.8;
+});
+
+// Scroll tracking for Parallax
+window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+});
+
+// Animation Loop
+const clock = new THREE.Clock();
+
+function animate3D() {
+    requestAnimationFrame(animate3D);
+    const elapsedTime = clock.getElapsedTime();
+
+    // Constant slow rotation
+    outerMesh.rotation.y += 0.002;
+    outerMesh.rotation.x += 0.001;
+    
+    innerMesh.rotation.y -= 0.005;
+    innerMesh.rotation.x += 0.003;
+    
+    // Floating effect (up and down)
+    group.position.y = Math.sin(elapsedTime * 0.5) * 0.4;
+
+    // Smooth interactive rotation based on mouse position
+    group.rotation.y += 0.05 * (targetRotationY - group.rotation.y);
+    group.rotation.x += 0.05 * (targetRotationX - group.rotation.x);
+
+    // Particles subtle rotation
+    particlesMesh.rotation.y = -elapsedTime * 0.02;
+    particlesMesh.rotation.x = elapsedTime * 0.01;
+
+    // Parallax effect on scroll - move camera down as we scroll down
+    // This moves the scene up relative to the viewport
+    camera.position.y = -scrollY * 0.005;
+
+    // Fade out or move the central object slightly to the right on scroll
+    group.position.x = scrollY * 0.002;
+
+    renderer.render(scene, camera);
+}
+
+animate3D();
+
+// Handle Window Resize
+window.addEventListener('resize', () => {
+    // Update camera
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    
+    // Update renderer
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Disable custom cursor on mobile
+    if (window.innerWidth < 768) {
+        if (cursor) cursor.style.display = 'none';
+        if (cursorGlow) cursorGlow.style.display = 'none';
+    } else {
+        if (cursor) cursor.style.display = 'block';
+        if (cursorGlow) cursorGlow.style.display = 'block';
+    }
+});
+    </script>
+</body>
+</html>
